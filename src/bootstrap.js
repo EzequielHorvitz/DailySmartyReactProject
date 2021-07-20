@@ -1,24 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import { BrowserRouter } from "react-router-dom";
-import App from "./components/app";
-import reducers from "./reducers";
+import './style/main.scss';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+import Home from './components/home';
 
-import "./style/main.scss";
+import Results from './components/results';
 
 function main() {
   ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
       <BrowserRouter>
-        <App />
+        <Switch>
+            <Route path='/' component={Home}/>
+            <Route path='/results' component={Home}/>
+            <Route path='/results' component={Results}/>
+        </Switch>
       </BrowserRouter>
-    </Provider>,
-    document.querySelector(".app-wrapper")
-  );
+    </Provider>
+    , document.querySelector('.app-wrapper'));
 }
-
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener('DOMContentLoaded', main);
